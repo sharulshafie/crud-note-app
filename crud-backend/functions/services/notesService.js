@@ -16,7 +16,7 @@ exports.getAllNotes = async () => {
     return notes;
 };
 
-exports.getNoteById = async () => {
+exports.getNoteById = async (id) => {
     const doc = await notesCollection.doc(id).get();
     if (!doc.exists) return null;
     return { id: doc.id, ...doc.data() };
