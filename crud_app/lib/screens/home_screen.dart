@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/note.dart';
 import '../services/api_service.dart';
+import '../screens/create_notes_screen.dart';
 
 class HomeScreen extends StatefulWidget {
     const HomeScreen({super.key});
@@ -49,6 +50,22 @@ class _HomeScreenState extends State<HomeScreen> {
                             );
                         },
                     );
+                },
+            ),
+            floatingActionButton: FloatingActionButton(
+                child: const Icon(Icons.add),
+                onPressed: () async {
+                    await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => const CreateNoteScreen(),
+                        ),
+                    );
+
+                    // refresh list AFTER returning
+                    setState(() {
+                        notesFuture = ApiService.fetchAllNotes();
+                    });
                 },
             ),
         );

@@ -15,4 +15,19 @@ class ApiService {
             throw Exception("Failed to load notes");
         }
     }
+
+    static Future<void> createNote(String title, String content) async {
+        final response = await http.post(
+            Uri.parse("$baseUrl/notes"),
+            headers: {'Content-Type': 'application/json'},
+            body: json.encode({
+                "title": title,
+                "content": content,
+            }),
+        );
+
+        if (response.statusCode != 201) {
+            throw Exception("Failed to create note!");
+        }
+    }
 }
