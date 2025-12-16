@@ -12,7 +12,7 @@ class ApiService {
             final List data = json.decode(response.body);
             return data.map((item) => Note.fromJson(item)).toList();
         } else {
-            throw Exception("Failed to load notes");
+            throw Exception("Failed to FETCH ALL notes");
         }
     }
 
@@ -27,7 +27,7 @@ class ApiService {
         );
 
         if (response.statusCode != 201) {
-            throw Exception("Failed to create note!");
+            throw Exception("Failed to CREATE note!");
         }
     }
 
@@ -39,7 +39,26 @@ class ApiService {
         if (response.statusCode == 200) {
             return Note.fromJson(json.decode(response.body));
         } else {
-            throw Exception("Failed to load note");
+            throw Exception("Failed to FETCH note");
+        }
+    }
+
+    static Future<void> updateNote(
+        String id,
+        String title, 
+        String content
+    ) async {
+        final response = await http.put(
+            Uri.parse("$baseUrl/notes/$id"),
+            headers: {'Content-Type': 'application/json'},
+            body: json.encode({
+                "title": title,
+                "content": content,
+            }),
+        );
+
+        if (response.statusCode != 200) {
+            throw Exception("Failed to UPDATE note!");
         }
     }
 }
