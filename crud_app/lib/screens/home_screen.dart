@@ -61,8 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                 },
             ),
-            floatingActionButton: FloatingActionButton(
-                child: const Icon(Icons.add),
+            floatingActionButton: FloatingActionButton.extended(
+                icon: const Icon(Icons.add),
+                label: const Text('Add'),
                 onPressed: () async {
                     await Navigator.push(
                         context,
