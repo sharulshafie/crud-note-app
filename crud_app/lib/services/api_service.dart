@@ -61,4 +61,14 @@ class ApiService {
             throw Exception("Failed to UPDATE note!");
         }
     }
+
+    static Future<void> deleteNote(String Id) async {
+        final response = await http.delete(
+            Uri.parse("$baseUrl/notes/$Id"),
+        );
+
+        if (response.statusCode != 200) {
+            throw Exception("Failed to DELETE note");
+        }
+    }
 }

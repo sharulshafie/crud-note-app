@@ -45,22 +45,87 @@ class NoteDetailScreen extends StatelessWidget {
                         ),
                     ), 
 
-                    floatingActionButton: FloatingActionButton.extended(
-                        icon: const Icon(Icons.edit),
-                        label : const Text('Edit'),
-                        onPressed: () async {
-                            final updated = await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => EditNoteScreen(note: note),
-                                ),
-                            );
+                    // floatingActionButton: FloatingActionButton.extended(
+                    //     icon: const Icon(Icons.edit),
+                    //     label : const Text('Edit'),
+                    //     onPressed: () async {
+                    //         final updated = await Navigator.push(
+                    //             context,
+                    //             MaterialPageRoute(
+                    //                 builder: (_) => EditNoteScreen(note: note),
+                    //             ),
+                    //         );
 
-                            if (updated == true) {
-                                // re-fetch detail after edit
-                                Navigator.pop(context);
-                            }
-                        },
+                    //         if (updated == true) {
+                    //             // re-fetch detail after edit
+                    //             Navigator.pop(context);
+                    //         }
+                    //     },
+                    // ),
+
+                    floatingActionButton : Padding(
+                        // padding: const EdgeInsets.all(16),
+                        padding: const EdgeInsets.only(left: 30),
+                        child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                                FloatingActionButton.extended(
+                                    heroTag: "deleteButton",
+                                    icon: const Icon(Icons.delete),
+                                    foregroundColor: Colors.white,
+                                    backgroundColor: Colors.red,
+                                    label : const Text('Delete'),
+                                    onPressed: () async {
+                                        final confirmed = await showDialog<bool>(
+                                            context: context,
+                                            builder: (_) => AlertDialog(
+                                                title: const Text("Delete Note"),
+                                                content: const Text("Kau confirm ke nak delete bro?"),
+                                                actions: [
+                                                    TextButton(
+                                                        onPressed: () => Navigator.pop(context, true),
+                                                        child: const Text("Yes"),
+                                                    ),
+                                                    TextButton(
+                                                        onPressed: () => Navigator.pop(context, false),
+                                                        child: const Text("No"),
+                                                    ),
+                                                ],
+                                            ),
+                                        );
+
+                                        if (confirmed == true) {
+                                            await ApiService.deleteNote(note.id);
+
+                                            // re-fetch detail after edit
+                                            Navigator.pop(context);
+                                        }
+                                    },
+                                ),
+
+                                Expanded(child: Container()),
+
+                                FloatingActionButton.extended(
+                                    heroTag: "editButton",
+                                    icon: const Icon(Icons.edit),
+                                    label : const Text('Edit'),
+                                    onPressed: () async {
+                                        final updated = await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) => EditNoteScreen(note: note),
+                                            ),
+                                        );
+
+                                        if (updated == true) {
+                                            // re-fetch detail after edit
+                                            Navigator.pop(context);
+                                        }
+                                    },
+                                )
+                            ],
+                        ), 
                     ),
                 );
             },
