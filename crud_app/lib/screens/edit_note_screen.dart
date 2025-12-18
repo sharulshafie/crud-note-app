@@ -39,7 +39,7 @@ class _EditNotesScreenState extends State<EditNoteScreen> {
                 SnackBar(content: Text("Error: $e")),
             );
         } finally {
-            setState() => isSaving = false;
+            setState(() => isSaving = false);
         }
     }
 
