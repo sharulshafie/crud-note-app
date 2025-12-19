@@ -90,7 +90,7 @@ class HomeScreen extends StatelessWidget {
         final controller = context.watch<NotesController>();
 
         return Scaffold(
-            appBar: Appbar(title: const Text('Notes')),
+            appBar: AppBar(title: const Text('Notes'),),
             
             // --- BODY ---
             body: controller.isLoading
@@ -105,7 +105,7 @@ class HomeScreen extends StatelessWidget {
                         // list state
                         : ListView.builder(
                             itemCount: controller.notes.length,
-                            itemBuilder: (context. index) {
+                            itemBuilder: (context, index) {
                                 final note = controller.notes[index];
 
                                 return ListTile(
@@ -132,7 +132,7 @@ class HomeScreen extends StatelessWidget {
                     await Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (_) => const CreateNoteScreen();
+                            builder: (_) => const CreateNoteScreen(),
                         ),
                     );
                 },
