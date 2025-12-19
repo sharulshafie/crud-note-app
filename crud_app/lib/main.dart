@@ -8,7 +8,7 @@ import 'screens/home_screen.dart';
 void main() {
   runApp(
     ChangeNotifierProvider(
-      // set NotesController globally --> fetchNotes run automatically
+      // set NotesController globally --> fetchNotes() run automatically
       create: (_) => NotesController()..fetchNotes(), 
       child: const MyApp(),
     ),
