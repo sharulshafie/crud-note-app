@@ -11,7 +11,7 @@ class NotesController extends ChangeNotifier {
     // public getters: prevents --> accidentally data changes, impossible-to-debug bugs
     List<Note> get notes => _notes;
     bool get isLoading => _isLoading;
-    string? get error => _error;
+    String? get error => _error;
 
     // function to fetch all notes
     Future<void> fetchNotes() async {
@@ -20,7 +20,7 @@ class NotesController extends ChangeNotifier {
         notifyListeners();  // tells UI --> to rebuild now
 
         try {
-            _notes = await ApiServices.fetchAllNotes();
+            _notes = await ApiService.fetchAllNotes();
         } catch (e) {
             _error = e.toString();
         } finally {
