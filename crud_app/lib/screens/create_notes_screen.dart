@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import '../services/api_service.dart';
+import 'package:provider/provider.dart';
+
+// import '../services/api_service.dart';
+import '../controllers/notes_controller.dart';
 
 class CreateNoteScreen extends StatefulWidget {
     const CreateNoteScreen({super.key});
@@ -24,7 +27,12 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
         setState(() => isSaving = true);
 
         try {
-            await ApiService.createNote(
+            // await ApiService.createNote(
+            //     titleController.text,
+            //     contentController.text
+            // );
+
+            await context.read<NotesController>().createNote(
                 titleController.text,
                 contentController.text
             );
