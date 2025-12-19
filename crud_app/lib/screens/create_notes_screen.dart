@@ -32,6 +32,7 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
             //     contentController.text
             // );
 
+            // CreateNote imports from NoteContoller.createNote
             await context.read<NotesController>().createNote(
                 titleController.text,
                 contentController.text
