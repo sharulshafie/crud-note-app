@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package/provider/provider.dart';
+import 'package:provider/provider.dart';
 
 import 'controllers/notes_controller.dart';
 import 'screens/home_screen.dart';
