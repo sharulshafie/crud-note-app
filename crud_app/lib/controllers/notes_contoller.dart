@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/note.dart';
 import '../services/api_service.dart';
 
-class NoteController extends ChangeNotifier {
+class NotesController extends ChangeNotifier {
     // public state variables
     List<Note> _notes = [];
     bool _isLoading  = false;
