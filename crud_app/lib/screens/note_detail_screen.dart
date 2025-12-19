@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '../models/note.dart';
 import '../services/api_service.dart';
 import '../screens/edit_note_screen.dart';
 import '../screens/home_screen.dart';
+import '../controllers/notes_controller.dart';
 
 class NoteDetailScreen extends StatelessWidget {
     final String noteId;
@@ -96,7 +99,9 @@ class NoteDetailScreen extends StatelessWidget {
                                         );
 
                                         if (confirmed == true) {
-                                            await ApiService.deleteNote(note.id);
+                                            // await ApiService.deleteNote(note.id);
+
+                                            await context.read<NotesController>().deleteNote(note.id);
 
                                             // re-fetch detail after edit
                                             Navigator.pop(context);
