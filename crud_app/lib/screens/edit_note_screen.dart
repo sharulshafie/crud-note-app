@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '../models/note.dart';
-import '../services/api_service.dart';
+import '../controllers/notes_controller.dart';
+// import '../services/api_service.dart';
+
 
 class EditNoteScreen extends StatefulWidget {
     final Note note;
@@ -27,7 +31,13 @@ class _EditNotesScreenState extends State<EditNoteScreen> {
         setState(() => isSaving = true);
 
         try {
-            await ApiService.updateNote(
+            // await ApiService.updateNote(
+            //     widget.note.id,
+            //     titleController.text,
+            //     contentController.text
+            // );
+
+            await context.read<NotesController>().updateNote(
                 widget.note.id,
                 titleController.text,
                 contentController.text
