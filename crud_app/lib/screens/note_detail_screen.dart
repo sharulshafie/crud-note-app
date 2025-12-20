@@ -138,7 +138,7 @@ class NoteDetailScreen extends StatelessWidget {
     // }
 
     @override
-    Widget build(BuildContext, context) {
+    Widget build(BuildContext context) {
         final controller = context.watch<NotesController>();
 
         // firtsWhere method --> to find first element in Iterable that satisfies a given condition
@@ -176,14 +176,14 @@ class NoteDetailScreen extends StatelessWidget {
                             icon: const Icon(Icons.delete),
                             foregroundColor: Colors.white,
                             backgroundColor: Colors.red,
-                            label: const Text('Delete')
+                            label: const Text('Delete'),
                             onPressed: () async {
                                 final confirmed = await showDialog<bool>(
                                     context: context,
                                     builder: (_) => AlertDialog(
                                         title: const Text("Delete Note"),
                                         content: const Text("Are you sure you want to delete?"),
-                                        action: [
+                                        actions: [
                                             // --- Yes Button ---
                                             TextButton(
                                                 child: const Text("Yes"),
@@ -213,7 +213,7 @@ class NoteDetailScreen extends StatelessWidget {
                         FloatingActionButton.extended(
                             heroTag: "editButton",
                             icon: const Icon(Icons.edit),
-                            label: const Text('Edit')
+                            label: const Text('Edit'),
                             onPressed: () async {
                                 final updated = await Navigator.push(
                                     context,
