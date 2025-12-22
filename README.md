@@ -2,7 +2,7 @@
 
 A full-stack CRUD (Create, Read, Update, Delete) note-taking application built with **Flutter** for the frontend and **Firebase Cloud Functions + Firestore** for the backend.
 
-This project was built **end-to-end** to deeply understand:
+This project was built **end-to-end** to for me deeply understand:
 - backend API design
 - frontend–backend integration
 - async state management
